@@ -285,7 +285,7 @@
 # def rangeRandRange(start, end):
 #     return random.randint(start, end)
 
-# # 스크립트로 직접 실행할 때만 실행하도록 함
+# 스크립트로 직접 실행할 때만 실행하도록 함
 # if __name__ == "__main__":
 #     programInfo()                                    # 정보 출력
 #     print("inc(5)   =", inc(5))                      # 함수 반환값 출력
@@ -293,11 +293,50 @@
 #     print("rangeRand(10)      =", rangeRand(10))     # 0~10 랜덤
 #     print("rangeRandRange(5,15)=", rangeRandRange(5, 15))
 
+"""
+-> 선생님 코드
+# 1
+def programInfo():
+  print('Version : 1.x')
+  print('Update Date : 2017-01-01')
+  print('Author : Project Python')
+programInfo()
+
+# 2
+def inc(number):
+  print(number + 1)
+def dec(number):
+  print(number - 1)
+inc(10); dec(10)
+
+# 3
+def inc(number):
+  return number + 1
+def dec(number):
+  return number - 1
+print(inc(10)); print(dec(10))
+
+# 4
+from random import randint
+def rangeRand(number):
+  return randint(0,number)
+print(rangeRand(20))
+
+# 5
+from random import randint
+def rangeRand(start, end):
+  if start > end:
+    return -1
+  return randint(start, end)
+print(rangeRand(10,20))
+"""
+
 
 # [ 문제 2 ]
 # 앞에서 학습한 내용을 바탕으로 다음 문제를 풀어보세요
-# 1. 총 3 개의 인자를 받는 calc (num1, num2, op) 함수를 만들어 간단한 사칙 연산을 수행 할 수 있도록 하시오 . 단 , 아래와 같이 사용 가능해야 합니다
-# 	calc(2, 1, '-')
+# 1. 총 3 개의 인자를 받는 calc (num1, num2, op) 함수를 만들어 간단한 사칙 연산을 수행 할 수 있도록 하시오. 
+# 단 , 아래와 같이 사용 가능해야 합니다
+# 	calc(2, 1, '-') # 결과 값 : 1
 # 	calc(2, 1) 			# 결과 값 : 3
 # 	calc(3) 			# 결과 값 : 4
 # 	calc(3, op=‘-’) 		# 결과 값 : 2
@@ -309,38 +348,265 @@
 
 # -> 풀이 및 해석 코드
 # 1. 총 3 개의 인자를 받는 calc (num1, num2, op) 함수를 만들어 간단한 사칙 연산을 수행 할 수 있도록 하시오
-def calc(num1, num2=1, op='+'):
-    if op == '+':
-        return num1 + num2
-    elif op == '-':
-        return num1 - num2
-    elif op == '*':
-        return num1 * num2
-    elif op == '/':
-        if num2 == 0:
-            raise ZeroDivisionError("0으로 나눌 수 없습니다.")
-        return num1 / num2
-    else:
-        raise ValueError(f"지원하지 않는 연산자입니다: {op}")
+# def calc(num1, num2=1, op='+'):
+#     if op == '+':
+#         return num1 + num2
+#     elif op == '-':
+#         return num1 - num2
+#     elif op == '*':
+#         return num1 * num2
+#     elif op == '/':
+#         if num2 == 0:
+#             raise ZeroDivisionError("0으로 나눌 수 없습니다.")
+#         return num1 / num2
+#     else:
+#         raise ValueError(f"지원하지 않는 연산자입니다: {op}")
 # num1, num2 두 수에 대해 연산자 op를 적용한 결과를 반환
 # op는 사칙연산 기호 + , - , * , / 중 하나
 # raise 로 num2를 0 으로 가정하고 나눌 경우 경고 출력 
 # raise 로 사칙연산 기호 + , - , * , / 가 아닌 다른 기호 사용 시 경고 출력
 # return 으로 결과 값 반환
 # 사용 예
-print(calc(2, 1, '-'))    # 결과 값 : 1
-print(calc(2, 1))         # 결과 값 :3
-print(calc(3))            # 결과 값 :4  (num2=1, op='+')
-print(calc(3, op='-'))    # 결과 값 :2  (num2=1)
+# print(calc(2, 1, '-'))    # 결과 값 : 1
+# print(calc(2, 1))         # 결과 값 :3
+# print(calc(3))            # 결과 값 :4  (num2=1, op='+')
+# print(calc(3, op='-'))    # 결과 값 :2  (num2=1)
 
 # 2. vSum () 함수를 만들어 인자로 전달된 모든 값을 더하는 함수를 만드시오
-def vSum(*args):
-    return sum(args)
+# def vSum(*args):
+#     return sum(args)
 # 가변 인자로 전달된 모든 값을 더해 반환. 인자를 하나도 넘기면 0 반환
 # 사용 예
-print(vSum(1, 2))            # 결과 값 : 3
-print(vSum(1, 2, 3))         # 결과 값 : 6
-print(vSum(1, 2, 3, 4, 5))   # 결과 값 : 15
+# print(vSum(1, 2))            # 결과 값 : 3
+# print(vSum(1, 2, 3))         # 결과 값 : 6
+# print(vSum(1, 2, 3, 4, 5))   # 결과 값 : 15
+
+
+"""
+# -> 선생님 코드
+# 6
+def calc(num1, num2=1, op='+'):
+  if op=='+':
+    return num1 + num2
+  elif op=='-':
+    return num1 - num2
+  elif op=='*':
+    return num1 * num2
+  elif op=='/':
+    return num1 / num2
+
+print(calc(2,1,"-"))
+print(calc(2,1))
+print(calc(3))
+print(calc(3,op="-"))
+
+# 7
+def vSum(*numbers):
+  tot = 0
+  for x in numbers:
+    tot = tot + x
+  return tot
+
+print(vSum(1,2))
+print(vSum(1,2,3))
+print(vSum(1,2,3,4,5))
+# 가변매개변수 numbers 사용
+# numbers 라는 tuple에 x 값을 한번 씩 대입
+# tot를 통해 누적합 구함
+"""
+
+# import calc
+# print(calc.sumFunc)
+
+# from calc import sumFunc
+# print(sumFunc(10,20))
+
+# from calc import *
+# print(sumFunc(10,20))
+# print(subFunc(10,20))
+# print(divFunc(10,20))
+# print(mulFunc(10,20))
+
+# 파이썬은 main 함수가 없기 때문에 내가 따로 직접 흉내낼 수 있는 구조를 만들어서 작업해야함. -> if문으로 main 함수 영역을 만들어줘야함
+# main 함수는 프로그램의 시작점 메인을 정의해놓고 다른 함수, 다른 객체를 호출해서 사용
+
+
+# from pack import sum
+# from pack import sub
+# 호출은 어떤 식으로든 상관 없음 
+
+# import pack.sum
+# print(pack.sum.sumFunc(10,20))
+# pack 폴더를 불러왔으니 pack 에 sum에 sumFunc
+
+# from pack import sub
+# print(sub.subFunc(10,20))
+# pack 속에 sub를 불러왔으니 sub에 subFunc
+
+# from pack.sum import sumFunc
+# print(sumFunc(10,20))
+# pack 속에 sum 속에 sumFunc를 불러왔으니 sumFunc
+
+# sum.py 와 sub.py 소스파일에서 호출해옴. 
+# 이번에는 새로운 작업 폴더에서 불러왔으므로 경로 명시 
+# 각 경로 해석은 # 주석으로 달아 놓았다
+
+
+
+# >> 파일 입출력에 대해 알아보자
+# [ Python 파일 입출력 ]
+# - Disk상에 존재하는 특정 파일을 읽을 수 있다.
+# - 새로운 파일을 Disk에 저장 할 수 있다
+
+# [ 특정 파일에 엑세스하기 위한 과정 ]
+# - open 함수를 이용하여 파일 Open
+# - read or write 등의 함수를 이용하여 파일에 대한 처리 작업 진행
+# - close 함수를 이용하여 열린 파일 닫기
+
+# 모드  [지정 한 파일이 존재하는 경우]        [지정한 파일이 존재하지 않는 경우]
+# "r"   File을 "읽기전용"으로 Open           파일이 존재하지 않을 경우 "r" 사용불가
+# "w"   기존 내용 삭제 후 "쓰기"모드로 Open   새로운 파일 생성 후 "쓰기"모드로 Open
+# "a"   기존 내용 유지 및 "쓰기"모드로 Open   새로운 파일 생성 후 "쓰기"모드로 Open
+
+
+
+# [ Python 예외 처리 ]
+# 예외 : 프로그램에서 벌어지는 예외적인 상황을 의미
+# - 파일을 읽고자 할 때 그 파일이 존재하지 않을 경우
+# - 어떠한 값을 0으로 나누고자 할 때
+# - 배열의 인덱스를 범위를 벗어 났을 때
+# - 사용자의 요구대로 진행이 안 될 때
+
+# [예제.4]
+# su1 = int(input("정수 입력: "))
+# su2 = int(input("정수 입력: "))
+# ret = su1 / su2
+# print(ret)
+
+# su1 = int(input("정수 입력: "))
+# su2 = int(input("정수 입력: "))
+# if su2 == 0:
+#   print("0으로 나눌 수 없습니다")
+# else:
+#   ret = su1 / su2
+#   print(ret)
+# 위와 같이 임시방편으로 ZeroDivisionError 를 처리할 수는 있다
+# 또는 0이 아니라 문자열인 ASD 로 나눌 경우 ValueError가 출력되는데
+# 역시 임시방편으로 처리할 수는 있다
+# 하지만 예외처리 구문으로 바꿔서 작업할 경우 완전하게 처리할 수 있다
+
+# 예외 처리 구문 사용
+# try:
+#   su1 = int(input("정수 입력: "))
+#   su2 = int(input("정수 입력: "))
+#   ret = su1 / su2
+#   print(ret)
+# except:
+#   print("Error 발생!")
+# print("다음 문장 실행")
+
+
+# 예외 처리 구문을 더 세부적으로 지정해서 사용할 수도 있다
+# try:  
+#   su1 = int(input("정수 입력: "))
+#   su2 = int(input("정수 입력: "))
+#   ret = su1 / su2
+#   print(ret)
+# except ZeroDivisionError:
+#   print("0으로 나누기 금지!")
+# except ValueError:
+#   print("정수값만 입력 가능!")
+# except:
+#   print("그 외 Error 발생!")
+# print("다음 문장 실행")
+
+
+# else 와 finally 같은 것도 사용 가능하다
+# try:  
+#   su1 = int(input("정수 입력: "))
+#   su2 = int(input("정수 입력: "))
+#   ret = su1 / su2
+#   print(ret)
+# except ZeroDivisionError:
+#   print("0으로 나누기 금지!")
+# except ValueError:
+#   print("정수값만 입력 가능!")
+# except:
+#   print("그 외 Error 발생!")
+# else:
+#   print("정상적으로 실행되었습니다.")
+# finally:
+#   print("무조건 실행")
+  # 보통 finally를 사용하고 print 로 뽑아내면 다음 줄에 .close()를 붙여서 많이 사용한다
+# print("다음 문장 실행")
+# finally는 정상 실행에도 실행이 되고, 에러가 출력되는 경우에도 실행됨
+
+
+# Error를 변수에 저장 및 출력해서 확인
+# try:  
+#   raise
+#   su1 = int(input("정수 입력: "))
+#   su2 = int(input("정수 입력: "))
+#   ret = su1 / su2
+#   print(ret)
+# except ZeroDivisionError:
+#   print("0으로 나누기 금지!")
+# except ValueError:
+#   print("정수값만 입력 가능!")
+# except Exception as e:
+#   print("그 외 Error 발생!")
+# else:
+#   print("정상적으로 실행되었습니다.")
+# finally:
+#   print("무조건 실행")
+# -> as 구문 사용해서 에러의 종류를 특정 변수에 담아두고 print 출력해서 확인 할 수 있다
+# -> raise 사용해서 강제 에러 발생
+
+
+# 에러 메세지를 원하는 값으로 지정가능하다
+# try:  
+#   raise Exception ("Error 발생")
+#   su1 = int(input("정수 입력: "))
+#   su2 = int(input("정수 입력: "))
+#   ret = su1 / su2
+#   print(ret)
+# except ZeroDivisionError:
+#   print("0으로 나누기 금지!")
+# except ValueError:
+#   print("정수값만 입력 가능!")
+# except Exception as e:
+#   print(e)
+# else:
+#   print("정상적으로 실행되었습니다.")
+# finally:
+#   print("무조건 실행")
+
+
+
+# [ Quiz ]
+# - 인증 프로그램 제작
+# - 90년 생 부터는 "가입불가" 출력
+# - 90년 생 미만은 "가입가능" 출력
+# - A,ㅁ,ㅋ 이러한 값 입력 시 "잘못입력, 숫자를 입력하세요" 문구 출력
+try:
+  sn = input("주민번호 앞자리 입력(Ex:900402): ")
+  if sn[0] > '9':
+    raise Exception("잘못 입력, 숫자를 입력하세요")
+  elif sn[0] >'8':
+    raise Exception("가입불가")
+except Exception as e:
+  print(e)
+else:
+  print("가입가능")
+finally:
+  print("프로그램을 종료합니다.")
+# if, else 를 조금 더 고급화, 고도화 시켜서 사용하는 예제
+
+
+
+
+
+
 
 
 
